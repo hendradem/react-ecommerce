@@ -1,8 +1,20 @@
 import React from "react";
-import { Button, Form, Row, Col, Container, Image } from "react-bootstrap";
+import {
+  Alert,
+  Button,
+  Form,
+  Row,
+  Col,
+  Container,
+  Image,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import heroImage from "../../assets/loginhero4.png";
+
+// state management
+import { registerAction } from "../../redux/actions";
+import { connect } from "react-redux";
 
 class RegisterPage extends React.Component {
   constructor(props) {
@@ -26,6 +38,13 @@ class RegisterPage extends React.Component {
       confirmPassword: this.refs.confirmpassword.value,
     };
 
+    let obj = {
+      email: userRegisterData.email,
+      username: userRegisterData.username,
+      password: userRegisterData.password,
+      role: "user",
+    };
+
     if (userRegisterData.email == "") {
       this.setState({ emailEmpty: [true, "Email is required"] });
     }
@@ -37,6 +56,15 @@ class RegisterPage extends React.Component {
     }
     if (userRegisterData.confirmPassword == "") {
       this.setState({ password2Empty: [true, "Password is required"] });
+    }
+
+    if (
+      this.state.emailEmpty[0] == false &&
+      this.state.usernameEmpty[0] == false &&
+      this.state.passwordEmpty[0] == false &&
+      this.state.password2Empty[0] == false
+    ) {
+      this.props.registerAction(obj);
     }
   };
 
@@ -61,6 +89,11 @@ class RegisterPage extends React.Component {
                   </Form.Text>
                 </div>
                 <hr />
+
+                {/* success register alert */}
+                <Alert show={this.props.registerSuccess} variant="success">
+                  <strong>Success,</strong> Register success!
+                </Alert>
 
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
@@ -108,25 +141,26 @@ class RegisterPage extends React.Component {
                   <Form.Control.Feedback type="invalid">
                     {this.state.passwordEmpty[1]}
                   </Form.Control.Feedback>
-                  <a
-                    onClick={() => {
-                      this.setState({ showPassword: !this.state.showPassword });
-                    }}
-                    className="search-icon"
-                    style={style.showMyPasswordButton}
-                  >
-                    {!this.state.passwordEmpty ? (
-                      <div>
-                        {this.state.showPassword ? (
-                          <i class="fas fa-eye-slash"></i>
-                        ) : (
-                          <i class="fas fa-eye"></i>
-                        )}
-                      </div>
-                    ) : (
-                      <></>
-                    )}
-                  </a>
+
+                  {!this.state.passwordEmpty[0] ? (
+                    <a
+                      onClick={() => {
+                        this.setState({
+                          showPassword: !this.state.showPassword,
+                        });
+                      }}
+                      className="search-icon"
+                      style={style.showMyPasswordButton}
+                    >
+                      {this.state.showPassword ? (
+                        <i class="fas fa-eye-slash"></i>
+                      ) : (
+                        <i class="fas fa-eye"></i>
+                      )}
+                    </a>
+                  ) : (
+                    <></>
+                  )}
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
@@ -143,27 +177,25 @@ class RegisterPage extends React.Component {
                   <Form.Control.Feedback type="invalid">
                     {this.state.password2Empty[1]}
                   </Form.Control.Feedback>
-                  <a
-                    onClick={() => {
-                      this.setState({
-                        showConfirmPassword: !this.state.showConfirmPassword,
-                      });
-                    }}
-                    className="search-icon"
-                    style={style.showMyPasswordButton}
-                  >
-                    {!this.state.password2Empty ? (
-                      <div>
-                        {this.state.showConfirmPassword ? (
-                          <i class="fas fa-eye-slash"></i>
-                        ) : (
-                          <i class="fas fa-eye"></i>
-                        )}
-                      </div>
-                    ) : (
-                      <></>
-                    )}
-                  </a>
+                  {!this.state.password2Empty[0] ? (
+                    <a
+                      onClick={() => {
+                        this.setState({
+                          showConfirmPassword: !this.state.showConfirmPassword,
+                        });
+                      }}
+                      className="search-icon"
+                      style={style.showMyPasswordButton}
+                    >
+                      {this.state.showConfirmPassword ? (
+                        <i class="fas fa-eye-slash"></i>
+                      ) : (
+                        <i class="fas fa-eye"></i>
+                      )}
+                    </a>
+                  ) : (
+                    <></>
+                  )}
                 </Form.Group>
 
                 <div style={style.regForgetPass} className="mt-4">
@@ -254,4 +286,11 @@ const style = {
   },
 };
 
-export default RegisterPage;
+const mapStateToProps = (state) => {
+  return {
+    registerSuccess: state.userReducer.successRegister,
+    registerFailed: state.userReducer.errorRegister,
+  };
+};
+
+export default connect(mapStateToProps, { registerAction })(RegisterPage);

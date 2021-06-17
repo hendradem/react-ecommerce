@@ -25,10 +25,6 @@ class LoginPage extends React.Component {
       showPassword: false,
       usernameEmpty: [false, ""],
       passwordEmpty: [false, ""],
-      // isEmpty: {
-      //   username: [false, ""],
-      //   password: [false, ""],
-      // },
     };
   }
 

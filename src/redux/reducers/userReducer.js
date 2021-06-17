@@ -4,6 +4,8 @@ const INITIAL_STATE = {
   password: "",
   role: "",
   errorLogin: false,
+  errorRegister: false,
+  successRegister: false,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -23,6 +25,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
       };
     case "LOG_OUT":
       return INITIAL_STATE;
+    case "REGISTER_SUCCESS":
+      return {
+        ...state,
+        successRegister: true,
+      };
     default:
       return state;
   }

@@ -267,6 +267,48 @@
       "nama": "Ade Mahendra",
       "username": "ade",
       "password": "ade"
+    },
+    {
+      "email": "hendraadem@gmail.com",
+      "username": "hendra",
+      "password": "hendra",
+      "role": "user",
+      "id": 3
+    },
+    {
+      "email": "hendraadem@gmail.com",
+      "username": "hendra",
+      "password": "hendra",
+      "role": "user",
+      "id": 4
+    },
+    {
+      "email": "hendraadem@gmail.com",
+      "username": "hendra",
+      "password": "hendra",
+      "role": "user",
+      "id": 5
+    },
+    {
+      "email": "hendraadem@gmail.com",
+      "username": "hendra",
+      "password": "hendra",
+      "role": "user",
+      "id": 6
+    },
+    {
+      "email": "hendraadem@gmail.com",
+      "username": "hendra",
+      "password": "hendra",
+      "role": "user",
+      "id": 7
+    },
+    {
+      "email": "mahendra@ugm.ac.id",
+      "username": "mahendra",
+      "password": "bismillah",
+      "role": "user",
+      "id": 8
     }
   ],
   "history": []

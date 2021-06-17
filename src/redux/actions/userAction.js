@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// user login
 export const loginAction = (username, password) => {
   return (dispatch) => {
     axios
@@ -38,6 +39,17 @@ export const keepLogin = (id) => {
       return dispatch({
         type: "LOGIN",
         payload: res.data,
+      });
+    });
+  };
+};
+
+// user registration
+export const registerAction = (data) => {
+  return (dispatch) => {
+    axios.post("http://localhost:2000/users", data).then((res) => {
+      return dispatch({
+        type: "REGISTER_SUCCESS",
       });
     });
   };
