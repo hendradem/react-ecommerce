@@ -227,6 +227,7 @@ const mapStateToProps = (state) => {
   return {
     loginFailed: state.userReducer.errorLogin,
     username: state.userReducer.username,
+    registerStatus: state.userReducer.successRegister,
   };
 };
 

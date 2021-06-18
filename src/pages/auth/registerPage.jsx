@@ -8,7 +8,7 @@ import {
   Container,
   Image,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import heroImage from "../../assets/loginhero4.png";
 
@@ -56,19 +56,15 @@ class RegisterPage extends React.Component {
     }
     if (userRegisterData.confirmPassword == "") {
       this.setState({ password2Empty: [true, "Password is required"] });
-    }
-
-    if (
-      this.state.emailEmpty[0] == false &&
-      this.state.usernameEmpty[0] == false &&
-      this.state.passwordEmpty[0] == false &&
-      this.state.password2Empty[0] == false
-    ) {
-      this.props.registerAction(obj);
+    } else {
+      return this.props.registerAction(obj);
     }
   };
 
   render() {
+    if (this.props.registerSuccess) {
+      return <Redirect to="/login" delay={2000} />;
+    }
     return (
       <div>
         <Container fluid>
