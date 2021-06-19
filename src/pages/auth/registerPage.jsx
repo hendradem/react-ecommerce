@@ -277,7 +277,7 @@ const style = {
     fontSize: "13px",
   },
   authButton: {
-    backgroundColor: "#4F46E5",
+    backgroundColor: "#0275d8",
     color: "#fff",
   },
 };
