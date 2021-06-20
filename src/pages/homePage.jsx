@@ -15,7 +15,20 @@ class HomePage extends React.Component {
       this.setState({ homeProducts: res.data });
     });
   };
-  showHomeProduct = () => {};
+  showHomeProduct = () => {
+    return this.state.homeProducts.map((item) => {
+      console.log(item);
+      return (
+        <Product
+          key={item.id}
+          productTitle={item.name}
+          productImage={item.images[1]}
+          productPrice={item.price}
+          productRating={item.rating}
+        />
+      );
+    });
+  };
   render() {
     return (
       <div>
@@ -32,9 +45,7 @@ class HomePage extends React.Component {
             <h6>Special for you today</h6>
             <a href="">see more</a>
           </div>
-          <div>
-            <Product />
-          </div>
+          <div>{this.showHomeProduct()}</div>
         </div>
       </div>
     );
