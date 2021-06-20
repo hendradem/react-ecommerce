@@ -10,6 +10,7 @@ import Navbar from "./component/navigationBar";
 import HomePage from "./pages/homePage";
 import LoginPage from "./pages/auth/loginPage";
 import RegisterPage from "./pages/auth/registerPage";
+import ProductDetail from "./pages/product/productDetail";
 // state  management
 import { connect } from "react-redux";
 import { keepLogin } from "./redux/actions";
@@ -28,6 +29,7 @@ class App extends React.Component {
           <Route path="/" component={HomePage} exact></Route>
           <Route path="/login" component={LoginPage}></Route>
           <Route path="/register" component={RegisterPage}></Route>
+          <Route path="/detail" component={ProductDetail}></Route>
         </Switch>
       </div>
     );

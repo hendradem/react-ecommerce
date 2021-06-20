@@ -28,7 +28,7 @@ class Product extends React.Component {
             as={Link}
             to="/"
           >
-            <div style={style.productTitleWrapper} as="{Link}" to="/">
+            <div style={style.productTitleWrapper} as={Link} to={"/detail"}>
               <p style={style.productTitle}>
                 {this.props.productTitle.toLowerCase()}
               </p>
