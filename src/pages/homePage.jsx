@@ -1,7 +1,7 @@
 import React from "react";
 import HeaderCarousel from "../component/home/headerCarousel";
 import axios from "axios";
-import HomeProductList from "../component/product/homeProductList";
+import Product from "../component/product/product";
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class HomePage extends React.Component {
             <a href="">see more</a>
           </div>
           <div>
-            <HomeProductList />
+            <Product />
           </div>
         </div>
       </div>
@@ -44,6 +44,7 @@ const style = {
     height: "400px",
     backgroundColor: "#fff",
     paddingTop: "70px",
+    position: "relative",
   },
   homeProductListHeader: {
     display: "flex",

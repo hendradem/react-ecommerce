@@ -24,6 +24,7 @@ class HeaderCarousel extends React.Component {
 const style = {
   carouselWrapper: {
     borderRadius: "10px",
+    position: "relative",
   },
 };
 
