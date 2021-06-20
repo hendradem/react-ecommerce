@@ -17,6 +17,9 @@ class NavigationBar extends React.Component {
     super(props);
     this.state = {
       isLogedIn: false,
+
+      // styling state
+      dropdownItemWidth: null,
     };
   }
 
@@ -70,7 +73,7 @@ class NavigationBar extends React.Component {
                       <span style={style.navUserName}>Ade Mahendra</span>
                     </Dropdown.Toggle>
 
-                    <Dropdown.Menu>
+                    <Dropdown.Menu className="mt-2" style={style.dropdownMenu}>
                       <Dropdown.Item style={style.dropdownItem} href="#">
                         <i className="fas fa-user mr-2"></i> profile
                       </Dropdown.Item>
@@ -81,7 +84,7 @@ class NavigationBar extends React.Component {
                         <i className="fas fa-history mr-2"></i> history
                       </Dropdown.Item>
                       <Dropdown.Divider />
-                      <Dropdown.Item style={style.dropdownItem} href="#">
+                      <Dropdown.Item style={style.dropdownItem}>
                         <Button
                           variant="danger"
                           size="sm"
@@ -120,12 +123,20 @@ class NavigationBar extends React.Component {
             </Form>
           </div>
         </Navbar>
+        <div style={style.category}></div>
       </div>
     );
   }
 }
 
 const style = {
+  category: {
+    width: "100%",
+    height: "50px",
+    backgroundColor: "coral",
+    marginTop: "150px",
+    position: "fixed",
+  },
   navbar: {
     padding: "2px",
     backgroundColor: "#fff",
@@ -177,15 +188,19 @@ const style = {
     marginRight: "5px",
   },
 
-  //
   dropdownItem: {
     fontSize: "13px",
     fontWeight: "500",
     color: "#475569",
     padding: "5px 15px",
   },
+  dropdownMenu: {
+    border: "none",
+    position: "absolute",
+    marginTop: "50px",
+    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+  },
 
-  //
   navAuthButton: {
     margin: "5px",
   },
