@@ -17,9 +17,7 @@ class NavigationBar extends React.Component {
     super(props);
     this.state = {
       isLogedIn: false,
-
-      // styling state
-      dropdownItemWidth: null,
+      categoryVisibility: false,
     };
   }
 
@@ -38,7 +36,15 @@ class NavigationBar extends React.Component {
               <Nav.Link style={style.navbarLink} as={Link} to={"/"}>
                 home
               </Nav.Link>
-              <Nav.Link style={style.navbarLink} href="#features">
+              <Nav.Link
+                style={style.navbarLink}
+                href=""
+                onClick={() => {
+                  this.setState({
+                    categoryVisibility: !this.state.categoryVisibility,
+                  });
+                }}
+              >
                 categories
               </Nav.Link>
               <Form.Control
@@ -123,7 +129,29 @@ class NavigationBar extends React.Component {
             </Form>
           </div>
         </Navbar>
-        <div style={style.category}></div>
+        {this.state.categoryVisibility ? (
+          <div style={style.category}>
+            <div className="container">
+              <a href="" style={style.categoryItem}>
+                <i class="fas fa-shopping-basket"></i> All categories
+              </a>
+              <a href="" style={style.categoryItem}>
+                <i class="fas fa-home"></i> Home living
+              </a>
+              <a href="" style={style.categoryItem}>
+                <i class="fas fa-mobile-alt"></i> Handphone
+              </a>
+              <a href="" style={style.categoryItem}>
+                <i class="fas fa-laptop"></i> Computer
+              </a>
+              <a href="" style={style.categoryItem}>
+                <i class="fas fa-pencil-ruler"></i> Stationary
+              </a>
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     );
   }
@@ -133,9 +161,23 @@ const style = {
   category: {
     width: "100%",
     height: "50px",
-    backgroundColor: "coral",
-    marginTop: "150px",
+    backgroundColor: "#fff",
+    marginTop: "50px",
     position: "fixed",
+    zIndex: "99",
+    display: "flex",
+    alignItems: "center",
+    borderBottom: "1px solid #eaeaea",
+  },
+  categoryItem: {
+    textDecoration: "none",
+    color: "#424242",
+    backgroundColor: "#eaeaea",
+    padding: "5px",
+    borderRadius: "6px",
+    fontSize: "14px",
+    fontWeight: "500",
+    marginRight: "5px",
   },
   navbar: {
     padding: "2px",
