@@ -26,6 +26,7 @@ class HomePage extends React.Component {
           productImage={item.images[1]}
           productPrice={item.price}
           productRating={item.rating}
+          productStock={item.stock}
         />
       );
     });

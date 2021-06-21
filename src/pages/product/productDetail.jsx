@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 import { Row, Col, Badge, Image, Table, Form, Button } from "react-bootstrap";
+import userReducer from "../../redux/reducers/userReducer";
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -9,6 +11,7 @@ class ProductDetail extends React.Component {
       productDetail: {},
       productImage: [],
       activeProductImage: null,
+      productQty: 1,
     };
   }
 
@@ -25,6 +28,21 @@ class ProductDetail extends React.Component {
 
   thumbImageClick = (imageSrc) => {
     this.setState({ activeProductImage: imageSrc });
+  };
+
+  qtyOnPlus = () => {
+    this.setState({ productQty: this.state.productQty + 1 });
+    let stock = this.state.productDetail.stock;
+    if (this.state.productQty >= stock) {
+      this.setState({ productQty: stock });
+    }
+  };
+
+  qtyOnMin = () => {
+    this.setState({ productQty: this.state.productQty - 1 });
+    if (this.state.productQty <= 1) {
+      this.setState({ productQty: 1 });
+    }
   };
 
   render() {
@@ -64,6 +82,9 @@ class ProductDetail extends React.Component {
                   {this.state.productDetail.name}
                 </h2>
                 <div style={style.productQuickDetail}>
+                  <Badge variant="light" style={style.badgeRating}>
+                    {this.state.productDetail.stock} in stock
+                  </Badge>
                   <Badge variant="light" style={style.badgeRating}>
                     <i class="fas fa-star text-warning"></i> 3.4
                   </Badge>
@@ -112,17 +133,30 @@ class ProductDetail extends React.Component {
                     className="productActionBtn"
                     style={style.productActionBtn}
                   >
-                    <Form.Control
-                      type="number"
-                      value="1"
-                      style={style.productQty}
-                    />
-                    <Button variant="primary">buy now</Button>
-                    <Button variant="default" style={style.addToWishlistBtn}>
-                      <i class="fas fa-cart-plus"></i>
+                    <Button
+                      variant="light"
+                      style={style.productQtyBtn}
+                      onClick={this.qtyOnMin}
+                    >
+                      -
                     </Button>
-                    <Button variant="default" style={style.addToWishlistBtn}>
-                      <i class="far fa-heart"></i>
+                    <Form.Control
+                      type="text"
+                      value={this.state.productQty}
+                      style={style.productQty}
+                      onChange={(e) =>
+                        this.setState({ productQty: +e.target.value })
+                      }
+                    />
+                    <Button
+                      variant="light"
+                      style={style.productQtyBtn}
+                      onClick={this.qtyOnPlus}
+                    >
+                      +
+                    </Button>
+                    <Button block variant="primary" className="ml-2">
+                      buy now
                     </Button>
                   </div>
                 </div>
@@ -200,13 +234,26 @@ const style = {
   // action btn
   productActionBtn: {
     display: "flex",
-    position: "absolute",
     bottom: "0",
+    width: "100%",
+    marginTop: "100px",
   },
   productQty: {
-    width: "60px",
-    marginRight: "10px",
+    width: "50px",
+    margin: "0 7px",
+    border: "1px solid #eaeaea",
+  },
+  productQtyBtn: {
+    border: "1px solid #eaeaea",
+    backgroundColor: "#fff",
+    padding: "0 4px",
   },
 };
 
-export default ProductDetail;
+const mapStateToProps = (state) => {
+  return {
+    isUserLogedIn: this.userReducer.username,
+  };
+};
+
+export default connect(mapStateToProps, null)(ProductDetail);
