@@ -29,7 +29,7 @@ class App extends React.Component {
           <Route path="/" component={HomePage} exact></Route>
           <Route path="/login" component={LoginPage}></Route>
           <Route path="/register" component={RegisterPage}></Route>
-          <Route path="/detail" component={ProductDetail}></Route>
+          <Route path="/product/:productId" component={ProductDetail}></Route>
         </Switch>
       </div>
     );
