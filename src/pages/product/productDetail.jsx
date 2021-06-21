@@ -8,6 +8,7 @@ class ProductDetail extends React.Component {
     this.state = {
       productDetail: {},
       productImage: [],
+      activeProductImage: null,
     };
   }
 
@@ -17,12 +18,16 @@ class ProductDetail extends React.Component {
       this.setState({
         productDetail: res.data,
         productImage: res.data.images,
+        activeProductImage: res.data.images[0],
       });
     });
   }
 
+  thumbImageClick = (imageSrc) => {
+    this.setState({ activeProductImage: imageSrc });
+  };
+
   render() {
-    console.log(this.state.productImage);
     return (
       <div className="container mt-5 p-0">
         <div style={style.productDetailWrapper}>
@@ -31,8 +36,26 @@ class ProductDetail extends React.Component {
               <div style={style.productImageWrapper}>
                 <Image
                   style={style.productImage}
-                  src={this.state.productImage[0]}
+                  src={this.state.activeProductImage}
                 ></Image>
+              </div>
+              <div style={style.productImageCarouselThumbWrapper}>
+                {this.state.productImage.map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      style={style.productImageCarouselThumb}
+                      onClick={() => {
+                        this.thumbImageClick(item);
+                      }}
+                    >
+                      <Image
+                        src={item}
+                        style={style.productImageCarouselImg}
+                      ></Image>
+                    </div>
+                  );
+                })}
               </div>
             </Col>
             <Col>
@@ -116,6 +139,8 @@ const style = {
   productDetailWrapper: {
     marginTop: "60px",
     backgroundColor: "#fff",
+    marginBottom: "200px",
+    marginTop: "100px",
     // border: "1px solid #eaeaea",
     // boxShadow: "0 4px 2px rgba(0, 0, 0, 0.01), 0 2px 2px 0 rgba(0, 0, 0, 0.06)",
   },
@@ -123,15 +148,31 @@ const style = {
   // image
   productImageWrapper: {
     width: "100%",
-    backgroundColor: "coral",
+    height: "500px",
   },
   productImage: {
     width: "100%",
+    height: "100%",
+    objectFit: "cover",
+  },
+  productImageCarouselThumbWrapper: {
+    width: "80%",
+    display: "flex",
+    justifyContent: "space-evenly",
+  },
+  productImageCarouselThumb: {
+    width: "100px",
+    marginTop: "10px",
+    marginRight: "10px",
+  },
+  productImageCarouselImg: {
+    width: "100%",
+    borderRadius: "5px",
   },
 
   // description
   productDescriptioWrapper: {
-    padding: "40px",
+    padding: "20px ",
   },
   productTitle: {
     fontWeight: "500",
