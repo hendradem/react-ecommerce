@@ -174,7 +174,7 @@ class ProductDetail extends React.Component {
                       className="ml-2"
                       style={style.addToCartBtn}
                     >
-                      add to cart
+                      Add to cart
                     </Button>
                   </div>
                 </div>
@@ -193,8 +193,9 @@ const style = {
     backgroundColor: "#fff",
     marginBottom: "200px",
     marginTop: "100px",
-    // border: "1px solid #eaeaea",
-    // boxShadow: "0 4px 2px rgba(0, 0, 0, 0.01), 0 2px 2px 0 rgba(0, 0, 0, 0.06)",
+    padding: "20px",
+    border: "1px solid #F9FAFB",
+    boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
   },
 
   // image
@@ -206,6 +207,7 @@ const style = {
     width: "100%",
     height: "100%",
     objectFit: "cover",
+    borderRadius: "5px",
   },
   productImageCarouselThumbWrapper: {
     width: "80%",
@@ -256,7 +258,7 @@ const style = {
     display: "flex",
     bottom: "0",
     width: "100%",
-    marginTop: "180px",
+    marginTop: "70px",
   },
   productQty: {
     width: "50px",

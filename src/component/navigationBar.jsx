@@ -204,7 +204,7 @@ const style = {
   navbar: {
     padding: "2px",
     backgroundColor: "#fff",
-    borderBottom: "1px solid #eaeaea",
+    borderBottom: "1px solid #F9FAFB",
   },
   navbarLogo: {
     height: "30px",
