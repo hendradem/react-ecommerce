@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { Row, Col, Badge, Image, Table, Form, Button } from "react-bootstrap";
-import userReducer from "../../redux/reducers/userReducer";
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -24,6 +23,8 @@ class ProductDetail extends React.Component {
         activeProductImage: res.data.images[0],
       });
     });
+
+    console.log(this.props.username);
   }
 
   thumbImageClick = (imageSrc) => {
@@ -42,6 +43,20 @@ class ProductDetail extends React.Component {
     this.setState({ productQty: this.state.productQty - 1 });
     if (this.state.productQty <= 1) {
       this.setState({ productQty: 1 });
+    }
+  };
+
+  qtyOnChange = (e) => {
+    this.setState({ productQty: +e.target.value });
+    let stock = this.state.productDetail.stock;
+
+    if (+e.target.value <= 1) {
+      console.log(+e.target.value);
+      this.setState({ productQty: 1 });
+    }
+    if (+e.target.value >= stock) {
+      console.log(+e.target.value);
+      this.setState({ productQty: stock });
     }
   };
 
@@ -144,9 +159,7 @@ class ProductDetail extends React.Component {
                       type="text"
                       value={this.state.productQty}
                       style={style.productQty}
-                      onChange={(e) =>
-                        this.setState({ productQty: +e.target.value })
-                      }
+                      onChange={(e) => this.qtyOnChange(e)}
                     />
                     <Button
                       variant="light"
@@ -155,8 +168,13 @@ class ProductDetail extends React.Component {
                     >
                       +
                     </Button>
-                    <Button block variant="primary" className="ml-2">
-                      buy now
+                    <Button
+                      block
+                      variant="primary"
+                      className="ml-2"
+                      style={style.addToCartBtn}
+                    >
+                      add to cart
                     </Button>
                   </div>
                 </div>
@@ -198,6 +216,8 @@ const style = {
     width: "100px",
     marginTop: "10px",
     marginRight: "10px",
+    border: "1px solid #eaeaea",
+    borderRadius: "5px",
   },
   productImageCarouselImg: {
     width: "100%",
@@ -236,7 +256,7 @@ const style = {
     display: "flex",
     bottom: "0",
     width: "100%",
-    marginTop: "100px",
+    marginTop: "180px",
   },
   productQty: {
     width: "50px",
@@ -248,12 +268,16 @@ const style = {
     backgroundColor: "#fff",
     padding: "0 4px",
   },
+  addToCartBtn: {
+    fontSize: "14px",
+    fontWeight: "500",
+  },
 };
 
 const mapStateToProps = (state) => {
   return {
-    isUserLogedIn: this.userReducer.username,
+    isUserLogedIn: state.userReducer.username,
   };
 };
 
-export default connect(mapStateToProps, null)(ProductDetail);
+export default connect(mapStateToProps)(ProductDetail);
