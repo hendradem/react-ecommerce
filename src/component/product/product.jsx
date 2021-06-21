@@ -26,9 +26,9 @@ class Product extends React.Component {
             className="p-2 pb-2"
             style={style.cardBody}
             as={Link}
-            to="/"
+            to={`/product/${this.props.productId}`}
           >
-            <div style={style.productTitleWrapper} as={Link} to={"/detail"}>
+            <div style={style.productTitleWrapper}>
               <p style={style.productTitle}>
                 {this.props.productTitle.toLowerCase()}
               </p>

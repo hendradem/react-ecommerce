@@ -21,6 +21,7 @@ class HomePage extends React.Component {
       return (
         <Product
           key={item.id}
+          productId={item.id}
           productTitle={item.name}
           productImage={item.images[1]}
           productPrice={item.price}
