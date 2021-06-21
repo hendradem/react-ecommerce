@@ -63,6 +63,28 @@ class NavigationBar extends React.Component {
                       style={style.navIcon}
                     ></i>
                   </Button>
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      style={style.myDropdown}
+                      variant="default"
+                      id="dropdown-basic"
+                    >
+                      <i
+                        className="fas fa-shopping-cart"
+                        style={style.navIcon}
+                      ></i>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                      <Dropdown.Item href="#/action-2">
+                        Another action
+                      </Dropdown.Item>
+                      <Dropdown.Item href="#/action-3">
+                        Something else
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
                   <Button variant="default" className="mr-1">
                     <i className="fas fa-bell" style={style.navIcon}></i>
                   </Button>
@@ -245,6 +267,21 @@ const style = {
 
   navAuthButton: {
     margin: "5px",
+  },
+
+  // cart
+  cartQuickView: {
+    width: "200px",
+    height: "200px",
+    backgroundColor: "coral",
+    position: "fixed",
+    zIndex: "99",
+    right: "0",
+    marginRight: "470px",
+    marginTop: "60px",
+    borderRadius: "7px",
+    backgroundColor: "#fff",
+    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
   },
 };
 
