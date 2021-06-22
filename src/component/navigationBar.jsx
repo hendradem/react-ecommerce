@@ -1,5 +1,13 @@
 import React from "react";
-import { Navbar, Button, Form, Nav, Dropdown, Image } from "react-bootstrap";
+import {
+  Navbar,
+  Button,
+  Form,
+  Nav,
+  Dropdown,
+  Image,
+  Badge,
+} from "react-bootstrap";
 
 // assets
 import { LOGO } from "../assets";
@@ -22,6 +30,7 @@ class NavigationBar extends React.Component {
   }
 
   render() {
+    console.log(this.props.cart);
     return (
       <div>
         <Navbar style={style.navbar} variant="light" fixed="top">
@@ -62,29 +71,11 @@ class NavigationBar extends React.Component {
                       className="fas fa-shopping-cart"
                       style={style.navIcon}
                     ></i>
+                    <Badge variant="danger" style={style.badgeCart}>
+                      8
+                    </Badge>
                   </Button>
-                  <Dropdown>
-                    <Dropdown.Toggle
-                      style={style.myDropdown}
-                      variant="default"
-                      id="dropdown-basic"
-                    >
-                      <i
-                        className="fas fa-shopping-cart"
-                        style={style.navIcon}
-                      ></i>
-                    </Dropdown.Toggle>
 
-                    <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">
-                        Another action
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">
-                        Something else
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
                   <Button variant="default" className="mr-1">
                     <i className="fas fa-bell" style={style.navIcon}></i>
                   </Button>
@@ -154,19 +145,19 @@ class NavigationBar extends React.Component {
         {this.state.categoryVisibility ? (
           <div style={style.category}>
             <div className="container">
-              <a href="" style={style.categoryItem}>
+              <a href="/" style={style.categoryItem}>
                 <i class="fas fa-shopping-basket"></i> All categories
               </a>
-              <a href="" style={style.categoryItem}>
+              <a href="/" style={style.categoryItem}>
                 <i class="fas fa-home"></i> Home living
               </a>
-              <a href="" style={style.categoryItem}>
+              <a href="/" style={style.categoryItem}>
                 <i class="fas fa-mobile-alt"></i> Handphone
               </a>
-              <a href="" style={style.categoryItem}>
+              <a href="/" style={style.categoryItem}>
                 <i class="fas fa-laptop"></i> Computer
               </a>
-              <a href="" style={style.categoryItem}>
+              <a href="/" style={style.categoryItem}>
                 <i class="fas fa-pencil-ruler"></i> Stationary
               </a>
             </div>
@@ -200,6 +191,14 @@ const style = {
     fontSize: "14px",
     fontWeight: "500",
     marginRight: "5px",
+  },
+  badgeCart: {
+    borderRadius: "5px",
+    border: "2px solid #fff",
+    position: "absolute",
+    marginTop: "10px",
+    marginLeft: "-5px",
+    fontSize: "10px",
   },
   navbar: {
     padding: "2px",
@@ -237,7 +236,6 @@ const style = {
     padding: "8px 10px",
   },
   navUserButton: {
-    padding: "0",
     backgroundColor: "#F3F4F6",
     padding: "3px 5px",
     paddingRight: "10px",
@@ -273,7 +271,6 @@ const style = {
   cartQuickView: {
     width: "200px",
     height: "200px",
-    backgroundColor: "coral",
     position: "fixed",
     zIndex: "99",
     right: "0",
@@ -288,6 +285,7 @@ const style = {
 const mapStateToProps = (state) => {
   return {
     username: state.userReducer.username,
+    cart: state.transactionReducer,
   };
 };
 

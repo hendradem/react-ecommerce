@@ -35,10 +35,10 @@ class LoginPage extends React.Component {
       password: this.refs.password.value,
     };
 
-    if (userLoginData.username == "") {
+    if (userLoginData.username === "") {
       this.setState({ usernameEmpty: [true, "Username is required"] });
     }
-    if (userLoginData.password == "") {
+    if (userLoginData.password === "") {
       this.setState({ passwordEmpty: [true, "Password is required"] });
     } else {
       this.props.loginAction(userLoginData.username, userLoginData.password);
@@ -114,7 +114,9 @@ class LoginPage extends React.Component {
                   </Form.Control.Feedback>
                   {!this.state.passwordEmpty[0] ? (
                     <a
-                      onClick={() => {
+                      href="/"
+                      onClick={(e) => {
+                        e.preventDefault();
                         this.setState({
                           showPassword: !this.state.showPassword,
                         });

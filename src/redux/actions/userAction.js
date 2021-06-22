@@ -8,7 +8,7 @@ export const loginAction = (username, password) => {
         `http://localhost:2000/users?username=${username}&password=${password}`
       )
       .then((res) => {
-        if (res.data.length == 0) {
+        if (res.data.length === 0) {
           return dispatch({
             type: "ERROR_LOGIN",
           });

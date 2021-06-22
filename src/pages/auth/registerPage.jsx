@@ -45,16 +45,16 @@ class RegisterPage extends React.Component {
       role: "user",
     };
 
-    if (userRegisterData.email == "") {
+    if (userRegisterData.email === "") {
       this.setState({ emailEmpty: [true, "Email is required"] });
     }
-    if (userRegisterData.username == "") {
+    if (userRegisterData.username === "") {
       this.setState({ usernameEmpty: [true, "Username is required"] });
     }
-    if (userRegisterData.password == "") {
+    if (userRegisterData.password === "") {
       this.setState({ passwordEmpty: [true, "Password is required"] });
     }
-    if (userRegisterData.confirmPassword == "") {
+    if (userRegisterData.confirmPassword === "") {
       this.setState({ password2Empty: [true, "Password is required"] });
     } else {
       return this.props.registerAction(obj);
@@ -140,7 +140,9 @@ class RegisterPage extends React.Component {
 
                   {!this.state.passwordEmpty[0] ? (
                     <a
-                      onClick={() => {
+                      href="/"
+                      onClick={(e) => {
+                        e.preventDefault();
                         this.setState({
                           showPassword: !this.state.showPassword,
                         });
@@ -175,7 +177,9 @@ class RegisterPage extends React.Component {
                   </Form.Control.Feedback>
                   {!this.state.password2Empty[0] ? (
                     <a
-                      onClick={() => {
+                      href="/"
+                      onClick={(e) => {
+                        e.preventDefault();
                         this.setState({
                           showConfirmPassword: !this.state.showConfirmPassword,
                         });

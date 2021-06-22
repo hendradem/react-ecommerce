@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button, Badge, Tooltip } from "react-bootstrap";
+import { Card, Button, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 class Product extends React.Component {

@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
+import { addToCart } from "../../redux/actions";
 import { Row, Col, Badge, Image, Table, Form, Button } from "react-bootstrap";
 
 class ProductDetail extends React.Component {
@@ -11,6 +12,8 @@ class ProductDetail extends React.Component {
       productImage: [],
       activeProductImage: null,
       productQty: 1,
+      showLoginModal: false,
+      hideModal: false,
     };
   }
 
@@ -57,6 +60,23 @@ class ProductDetail extends React.Component {
     if (+e.target.value >= stock) {
       console.log(+e.target.value);
       this.setState({ productQty: stock });
+    }
+  };
+
+  onAddToCart = () => {
+    const { productDetail, productQty } = this.state;
+    if (!this.props.username) {
+      alert("login dulu");
+    } else {
+      let obj = {
+        id: productDetail.id,
+        name: productDetail.name,
+        image: productDetail.images[0],
+        price: productDetail.price,
+        qty: productQty,
+      };
+
+      this.props.addToCart(this.props.id, obj);
     }
   };
 
@@ -122,7 +142,7 @@ class ProductDetail extends React.Component {
                   </h3>
                   <p style={style.productDescriptionText}>
                     {this.state.productDetail.description}
-                    <a href="">read more</a>
+                    <a href="/">read more</a>
                   </p>
 
                   <div className="spesification">
@@ -173,6 +193,7 @@ class ProductDetail extends React.Component {
                       variant="primary"
                       className="ml-2"
                       style={style.addToCartBtn}
+                      onClick={this.onAddToCart}
                     >
                       Add to cart
                     </Button>
@@ -189,7 +210,6 @@ class ProductDetail extends React.Component {
 
 const style = {
   productDetailWrapper: {
-    marginTop: "60px",
     backgroundColor: "#fff",
     marginBottom: "200px",
     marginTop: "100px",
@@ -274,12 +294,22 @@ const style = {
     fontSize: "14px",
     fontWeight: "500",
   },
+
+  // modal
+  myModal: {
+    border: "none",
+    boxShadow: "none",
+    padding: "0",
+  },
+  modalHeader: {
+    // height: "100px",
+  },
 };
 
 const mapStateToProps = (state) => {
   return {
-    isUserLogedIn: state.userReducer.username,
+    username: state.userReducer.username,
+    id: state.userReducer.id,
   };
 };
-
-export default connect(mapStateToProps)(ProductDetail);
+export default connect(mapStateToProps, { addToCart })(ProductDetail);

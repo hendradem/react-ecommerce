@@ -45,7 +45,7 @@ class HomePage extends React.Component {
             style={style.homeProductListHeader}
           >
             <h6>Special for you today</h6>
-            <a href="">see more</a>
+            <a href="/">see more</a>
           </div>
           <div>{this.showHomeProduct()}</div>
         </div>

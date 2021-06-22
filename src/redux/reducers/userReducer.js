@@ -3,6 +3,7 @@ const INITIAL_STATE = {
   username: "",
   password: "",
   role: "",
+  cart: [],
   errorLogin: false,
   errorRegister: false,
   successRegister: false,
@@ -17,6 +18,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         username: action.payload.username,
         password: action.payload.password,
         role: action.payload.role,
+        cart: action.payload.cart,
       };
     case "ERROR_LOGIN":
       return {
