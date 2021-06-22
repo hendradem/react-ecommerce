@@ -72,7 +72,7 @@ class NavigationBar extends React.Component {
                       style={style.navIcon}
                     ></i>
                     <Badge variant="danger" style={style.badgeCart}>
-                      8
+                      {this.props.cart.length}
                     </Badge>
                   </Button>
 
@@ -285,7 +285,7 @@ const style = {
 const mapStateToProps = (state) => {
   return {
     username: state.userReducer.username,
-    cart: state.transactionReducer,
+    cart: state.userReducer.cart,
   };
 };
 

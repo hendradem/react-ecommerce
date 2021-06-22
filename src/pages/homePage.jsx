@@ -17,7 +17,6 @@ class HomePage extends React.Component {
   };
   showHomeProduct = () => {
     return this.state.homeProducts.map((item) => {
-      console.log(item);
       return (
         <Product
           key={item.id}
