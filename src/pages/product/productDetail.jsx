@@ -72,6 +72,7 @@ class ProductDetail extends React.Component {
         image: productDetail.images[0],
         price: productDetail.price,
         qty: productQty,
+        stock: productDetail.stock,
       };
 
       this.props.addToCart(this.props.id, obj);
