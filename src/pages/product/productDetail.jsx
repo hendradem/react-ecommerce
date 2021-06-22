@@ -26,8 +26,6 @@ class ProductDetail extends React.Component {
         activeProductImage: res.data.images[0],
       });
     });
-
-    console.log(this.props.username);
   }
 
   thumbImageClick = (imageSrc) => {
@@ -121,14 +119,14 @@ class ProductDetail extends React.Component {
                     {this.state.productDetail.stock} in stock
                   </Badge>
                   <Badge variant="light" style={style.badgeRating}>
-                    <i class="fas fa-star text-warning"></i> 3.4
+                    <i className="fas fa-star text-warning"></i> 3.4
                   </Badge>
                   <Badge
                     variant="light"
                     className="text-success"
                     style={style.badgeOrders}
                   >
-                    <i class="fas fa-shopping-bag text-success"></i> 49 sold
+                    <i className="fas fa-shopping-bag text-success"></i> 49 sold
                   </Badge>
                   <Badge
                     variant="light"

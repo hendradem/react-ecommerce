@@ -20,7 +20,7 @@ class Product extends React.Component {
             />
           </div>
           <Button variant="default" style={style.addToWishlistBtn}>
-            <i class="far fa-heart"></i>
+            <i className="far fa-heart"></i>
           </Button>
           <Card.Body
             className="p-2 pb-2"
@@ -38,14 +38,14 @@ class Product extends React.Component {
             </p>
             <div style={style.productQuickDetail}>
               <Badge variant="light" style={style.badgeRating}>
-                <i class="fas fa-star text-warning"></i> 3.4
+                <i className="fas fa-star text-warning"></i> 3.4
               </Badge>
               <Badge
                 variant="light"
                 className="text-success"
                 style={style.badgeOrders}
               >
-                <i class="fas fa-shopping-bag text-success"></i> 49 orders
+                <i className="fas fa-shopping-bag text-success"></i> 49 orders
               </Badge>
               <Badge
                 variant="light"

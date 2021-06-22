@@ -146,19 +146,19 @@ class NavigationBar extends React.Component {
           <div style={style.category}>
             <div className="container">
               <a href="/" style={style.categoryItem}>
-                <i class="fas fa-shopping-basket"></i> All categories
+                <i className="fas fa-shopping-basket"></i> All categories
               </a>
               <a href="/" style={style.categoryItem}>
-                <i class="fas fa-home"></i> Home living
+                <i className="fas fa-home"></i> Home living
               </a>
               <a href="/" style={style.categoryItem}>
-                <i class="fas fa-mobile-alt"></i> Handphone
+                <i className="fas fa-mobile-alt"></i> Handphone
               </a>
               <a href="/" style={style.categoryItem}>
-                <i class="fas fa-laptop"></i> Computer
+                <i className="fas fa-laptop"></i> Computer
               </a>
               <a href="/" style={style.categoryItem}>
-                <i class="fas fa-pencil-ruler"></i> Stationary
+                <i className="fas fa-pencil-ruler"></i> Stationary
               </a>
             </div>
           </div>

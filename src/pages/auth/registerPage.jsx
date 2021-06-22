@@ -151,9 +151,9 @@ class RegisterPage extends React.Component {
                       style={style.showMyPasswordButton}
                     >
                       {this.state.showPassword ? (
-                        <i class="fas fa-eye-slash"></i>
+                        <i className="fas fa-eye-slash"></i>
                       ) : (
-                        <i class="fas fa-eye"></i>
+                        <i className="fas fa-eye"></i>
                       )}
                     </a>
                   ) : (
@@ -188,9 +188,9 @@ class RegisterPage extends React.Component {
                       style={style.showMyPasswordButton}
                     >
                       {this.state.showConfirmPassword ? (
-                        <i class="fas fa-eye-slash"></i>
+                        <i className="fas fa-eye-slash"></i>
                       ) : (
-                        <i class="fas fa-eye"></i>
+                        <i className="fas fa-eye"></i>
                       )}
                     </a>
                   ) : (

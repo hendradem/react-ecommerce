@@ -1,7 +1,15 @@
 import React from "react";
 import { Alert, Row, Col, Card, Image, Button, Form } from "react-bootstrap";
+import { connect } from "react-redux";
 
 class Cart extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      productQty: 1,
+    };
+  }
+
   render() {
     return (
       <div className="container mt-5 p-0">
@@ -24,7 +32,7 @@ class Cart extends React.Component {
                   <p style={style.productSize}>Size M / Color Blue</p>
                   <p style={style.productPrice}>Rp 1.345.000</p>
                 </div>
-                <div style={style.productCardActionWrapper}>
+                <div style={style.productActionBtn}>
                   <Button
                     variant="light"
                     style={style.productQtyBtn}
@@ -45,15 +53,17 @@ class Cart extends React.Component {
                   >
                     +
                   </Button>
-                  <Button
-                    block
-                    variant="primary"
-                    className="ml-2"
-                    style={style.addToCartBtn}
-                    onClick={this.onAddToCart}
-                  >
-                    Add to cart
-                  </Button>
+                  <div>
+                    <Button variant="light" size="sm">
+                      <i class="fas fa-trash"></i>
+                    </Button>
+                    <Button variant="light" size="sm">
+                      <i class="fas fa-trash"></i>
+                    </Button>
+                    <Button variant="light" size="sm">
+                      <i class="fas fa-trash"></i>
+                    </Button>
+                  </div>
                 </div>
               </Card>
             </Col>
@@ -85,7 +95,7 @@ const style = {
   },
 
   productCardImgWrapper: {
-    width: "70px",
+    width: "20%",
     height: "70px",
     borderRadius: "5px",
     marginRight: "10px",
@@ -99,7 +109,7 @@ const style = {
   },
 
   productCardDetailWrapper: {
-    width: "350px",
+    width: "80%",
   },
   productTitle: {
     fontSize: "14px",
@@ -119,6 +129,35 @@ const style = {
     marginBottom: "0",
     marginTop: "2px",
   },
+
+  // action btn
+  productActionBtn: {
+    display: "flex",
+    width: "100%",
+    height: "30px",
+    float: "right",
+    backgroundColor: "coral",
+  },
+  productQty: {
+    width: "50px",
+    margin: "0 7px",
+    border: "1px solid #eaeaea",
+  },
+  productQtyBtn: {
+    border: "1px solid #eaeaea",
+    backgroundColor: "#fff",
+    padding: "0 7px",
+  },
+  addToCartBtn: {
+    fontSize: "14px",
+    fontWeight: "500",
+  },
 };
 
-export default Cart;
+const mapStateToProps = (state) => {
+  return {
+    cart: state.userReducer.cart,
+  };
+};
+
+export default connect(mapStateToProps)(Cart);
