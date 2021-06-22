@@ -33,42 +33,34 @@ class Cart extends React.Component {
                   <p style={style.productPrice}>Rp 1.345.000</p>
                 </div>
                 <div style={style.productActionBtn}>
-                  <Button
-                    variant="light"
-                    style={style.productQtyBtn}
-                    onClick={this.qtyOnMin}
-                  >
-                    -
-                  </Button>
                   <Form.Control
-                    type="text"
+                    type="number"
+                    className="mr-1"
                     value={this.state.productQty}
                     style={style.productQty}
                     onChange={(e) => this.qtyOnChange(e)}
                   />
+
                   <Button
                     variant="light"
-                    style={style.productQtyBtn}
-                    onClick={this.qtyOnPlus}
+                    size="sm"
+                    className="mr-1"
+                    style={style.btnCardActionBtn}
                   >
-                    +
+                    <i class="fas fa-heart"></i>
                   </Button>
-                  <div>
-                    <Button variant="light" size="sm">
-                      <i class="fas fa-trash"></i>
-                    </Button>
-                    <Button variant="light" size="sm">
-                      <i class="fas fa-trash"></i>
-                    </Button>
-                    <Button variant="light" size="sm">
-                      <i class="fas fa-trash"></i>
-                    </Button>
-                  </div>
+                  <Button
+                    variant="light"
+                    size="sm"
+                    style={style.btnCardActionBtn}
+                  >
+                    <i class="fas fa-trash"></i>
+                  </Button>
                 </div>
               </Card>
             </Col>
             <Col sm={4}>
-              <Alert variant="success"> Cart page </Alert>
+              <Card style={style.cartTotal}>asdasdasd</Card>
             </Col>
           </Row>
         </div>
@@ -90,6 +82,7 @@ const style = {
     padding: "7px",
     display: "flex",
     flexDirection: "row",
+    alignItems: "center",
     border: "1px solid #F9FAFB",
     boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
   },
@@ -115,33 +108,34 @@ const style = {
     fontSize: "14px",
     marginTop: "5px",
     marginBottom: "0",
+    color: "#374151",
   },
   productSize: {
-    fontSize: "12px",
-    marginTop: "2px",
+    fontSize: "11px",
     marginBottom: "0",
     color: "#9CA3AF",
   },
   productPrice: {
-    fontSize: "14px",
+    fontSize: "13px",
     fontWeight: "600",
-    color: "#F36E2D",
+    color: "#4B5563",
     marginBottom: "0",
-    marginTop: "2px",
   },
 
   // action btn
   productActionBtn: {
     display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
     width: "100%",
-    height: "30px",
-    float: "right",
-    backgroundColor: "coral",
+    marginRight: "20px",
   },
   productQty: {
     width: "50px",
-    margin: "0 7px",
     border: "1px solid #eaeaea",
+    height: "30px",
+    padding: "3px",
+    paddingLeft: "10px",
   },
   productQtyBtn: {
     border: "1px solid #eaeaea",
@@ -151,6 +145,19 @@ const style = {
   addToCartBtn: {
     fontSize: "14px",
     fontWeight: "500",
+  },
+  btnCardActionBtn: {
+    backgroundColor: "#fff",
+    border: "1px solid #eaeaea",
+    fontWeight: "500",
+    color: "#4B5563",
+    fontSize: "12px",
+    padding: "5px 10px",
+  },
+
+  // cart total
+  cartTotal: {
+    marginTop: "27px",
   },
 };
 
