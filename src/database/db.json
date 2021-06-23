@@ -229,22 +229,8 @@
       "nama": "Ade Mahendra",
       "username": "ade",
       "password": "ade",
-      "cart": [
-        {
-          "id": 5,
-          "name": "NIKE W NIKE REACT ELEMENT 55",
-          "image": "https://kickz.akamaized.net/en/media/images/p/1200/W_NIKE_REACT_ELEMENT_55-WHITE_FIRE_PINK_SAPPHIRE_BARELY_VOLT-1.jpg",
-          "price": 2345000,
-          "qty": 1
-        },
-        {
-          "id": 1,
-          "name": "NIKE AIR ZOOM-TYPE",
-          "image": "https://kickz.akamaized.net/en/media/images/p/1200/nike-AIR_ZOOM_TYPE-BLACK_SUMMIT_WHITE_MENTA_ORANGE_TRANCE-1.jpg",
-          "price": 2500000,
-          "qty": 1
-        }
-      ]
+      "cart": [],
+      "wishlists": []
     }
   ],
   "history": []

@@ -1,8 +1,40 @@
 import React from "react";
 import { Card, Button, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { addToCart } from "../../redux/actions";
 
 class Product extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      productDetail: {},
+      productImage: [],
+      activeProductImage: null,
+      productQty: 1,
+      showLoginModal: false,
+      hideModal: false,
+    };
+  }
+
+  onAddToCart = () => {
+    const { productDetail, productQty } = this.state;
+    if (!this.props.username) {
+      alert("login dulu");
+    } else {
+      let obj = {
+        id: productDetail.id,
+        name: productDetail.name,
+        image: productDetail.images[0],
+        price: productDetail.price,
+        qty: productQty,
+        stock: productDetail.stock,
+      };
+
+      this.props.addToCart(this.props.id, obj);
+    }
+  };
+
   render() {
     return (
       <div style={style.productCardWrapper}>
@@ -61,6 +93,7 @@ class Product extends React.Component {
               variant="primary"
               className="mr-1"
               style={style.addToCartBtn}
+              onClick={this.onAddToCart}
               block
             >
               add to card <i className="fas fa-cart-plus ml-1"></i>
@@ -165,4 +198,4 @@ const style = {
   },
 };
 
-export default Product;
+export default connect(null, { addToCart })(Product);

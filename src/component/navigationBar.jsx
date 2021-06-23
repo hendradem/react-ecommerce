@@ -30,7 +30,6 @@ class NavigationBar extends React.Component {
   }
 
   render() {
-    console.log(this.props.cart);
     return (
       <div>
         <Navbar style={style.navbar} variant="light" fixed="top">
@@ -66,7 +65,12 @@ class NavigationBar extends React.Component {
             <Form inline>
               {this.props.username ? (
                 <>
-                  <Button variant="default" className="mr-1">
+                  <Button
+                    variant="default"
+                    className="mr-1"
+                    as={Link}
+                    to={"/cart"}
+                  >
                     <i
                       className="fas fa-shopping-cart"
                       style={style.navIcon}
@@ -80,7 +84,8 @@ class NavigationBar extends React.Component {
                     <i className="fas fa-bell" style={style.navIcon}></i>
                   </Button>
                   <Button variant="default" className="mr-1">
-                    <i className="fas fa-envelope" style={style.navIcon}></i>
+                    <i className="fas fa-heart" style={style.navIcon}></i>
+                    <Badge variant="danger" style={style.badgeCart}></Badge>
                   </Button>
                   <Dropdown>
                     <Dropdown.Toggle

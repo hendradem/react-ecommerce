@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   password: "",
   role: "",
   cart: [],
+  wishlists: [],
   errorLogin: false,
   errorRegister: false,
   successRegister: false,
