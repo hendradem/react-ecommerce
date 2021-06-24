@@ -229,9 +229,18 @@
       "nama": "Ade Mahendra",
       "username": "ade",
       "password": "ade",
-      "cart": [],
+      "cart": [
+        {
+          "id": 5,
+          "name": "NIKE W NIKE REACT ELEMENT 55",
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/W_NIKE_REACT_ELEMENT_55-WHITE_FIRE_PINK_SAPPHIRE_BARELY_VOLT-1.jpg",
+          "price": 2345000,
+          "qty": 2,
+          "stock": 12
+        }
+      ],
       "wishlists": []
     }
   ],
-  "history": []
+  "orders": []
 }

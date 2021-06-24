@@ -1,5 +1,14 @@
 import React from "react";
-import { Row, Col, Card, Image, Button, Form } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Card,
+  Image,
+  Button,
+  Form,
+  Modal,
+  InputGroup,
+} from "react-bootstrap";
 import { connect } from "react-redux";
 import { deleteCart } from "../../redux/actions";
 
@@ -7,32 +16,11 @@ class Cart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      limitQty: false,
       productQty: 1,
-      productStock: 10,
-      price: null,
-      totalPrice: null,
+      checkoutAuthModal: false,
+      passwordError: false,
     };
   }
-
-  qtyOnChange = (e, currentProductQty, currentProductStock) => {
-    // this.setState({ productQty: +e.target.value });
-    // let stock = this.state.productStock;
-
-    e.target.value = this.state.productQty;
-
-    // if (+e.target.value <= 1) {
-    //   this.setState({ limitQty: true });
-    // }
-    // if (+e.target.value >= currentProductStock) {
-    //   this.setState({ productQty: stock });
-    //   alert("udah maksimal nih");
-    // }
-  };
-
-  onDeleteCart = (userID, productID) => {
-    this.props.deleteCart(userID, productID);
-  };
 
   getCartData = () => {
     return this.props.cart.map((item, index) => {
@@ -81,15 +69,102 @@ class Cart extends React.Component {
     });
   };
 
+  qtyOnChange = (e, currentProductQty, currentProductStock) => {
+    // this.setState({ productQty: +e.target.value });
+    // let stock = this.state.productStock;
+
+    e.target.value = this.state.productQty;
+    console.log(e.target.value);
+
+    // if (+e.target.value <= 1) {
+    //   this.setState({ limitQty: true });
+    // }
+    // if (+e.target.value >= currentProductStock) {
+    //   this.setState({ productQty: stock });
+    //   alert("udah maksimal nih");
+    // }
+  };
+
+  onDeleteCart = (userID, productID) => {
+    this.props.deleteCart(userID, productID);
+  };
+
+  checkoutAuth = () => {
+    let pass = this.refs.checkoutPass.value;
+    let userPass = this.props.userPass;
+
+    if (pass === userPass) {
+      this.setState({ passwordError: false });
+      setTimeout(() => {
+        this.addToOrder();
+      }, 1000);
+    } else {
+      this.setState({ passwordError: true });
+    }
+  };
+
+  checkoutAuthClose = () => {
+    this.setState({ checkoutAuthModal: false });
+  };
+
+  addToOrder = () => {
+    alert(123);
+  };
+
   render() {
     return (
       <div className="container mt-5 p-0">
+        <Modal
+          backdrop="static"
+          keyboard={false}
+          size="sm"
+          centered
+          show={this.state.checkoutAuthModal}
+          onHide={this.checkoutAuthClose}
+        >
+          <Modal.Body>
+            <h4>Verify your identity</h4>
+
+            <InputGroup hasValidation>
+              <Form.Control
+                type="password"
+                ref="checkoutPass"
+                placeholder="your password"
+                required
+                isInvalid={this.state.passwordError}
+              />
+              <Form.Control.Feedback type="invalid">
+                Password doesnt match
+              </Form.Control.Feedback>
+            </InputGroup>
+
+            <div className="mt-3" style={style.verifyBtn}>
+              <Button
+                variant="primary"
+                className="mr-1"
+                style={style.btnCancelVerify}
+                onClick={() => {
+                  this.setState({ checkoutAuthModal: false });
+                }}
+              >
+                cancel
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  this.checkoutAuth();
+                }}
+                style={style.btnProcessVerify}
+              >
+                verify
+              </Button>
+            </div>
+          </Modal.Body>
+        </Modal>
+
         <div className="cart-wrapper" style={style.cartWrapper}>
           <Row>
-            <Col sm={8}>
-              <h6>Your cart ({this.props.cart.length})</h6>
-              {this.getCartData()}
-            </Col>
+            <Col sm={8}>{this.getCartData()}</Col>
             <Col sm={4}>
               <Card style={style.cartTotal}>
                 <Card.Body style={style.cartTotalBody}>
@@ -102,9 +177,22 @@ class Cart extends React.Component {
                   </p>
                   <hr />
                   <p>
-                    Total: <span className="float-right">Rp 4.530.000</span>
+                    <strong>Total:</strong>
+                    <span
+                      className="float-right"
+                      style={style.totalPaymentText}
+                    >
+                      <strong>Rp 4.530.000</strong>
+                    </span>
                   </p>
-                  <Button variant="primary" block>
+                  <Button
+                    block
+                    variant="primary"
+                    style={style.btnCheckOut}
+                    onClick={() => {
+                      this.setState({ checkoutAuthModal: true });
+                    }}
+                  >
                     Checkout
                   </Button>
                 </Card.Body>
@@ -131,7 +219,7 @@ const style = {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    marginTop: "8px",
+    marginBottom: "8px",
     border: "1px solid #F9FAFB",
     boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
   },
@@ -206,11 +294,35 @@ const style = {
 
   // cart total
   cartTotal: {
-    marginTop: "27px",
+    border: "1px solid #F9FAFB",
+    boxShadow:
+      "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
   },
   cartTotalBody: {
-    fontSize: "13px",
-    color: "#667085",
+    fontSize: "14px",
+    color: "#31353b",
+  },
+  totalPaymentText: {
+    color: "#fa591d",
+  },
+  btnCheckOut: {
+    fontWeight: "500",
+  },
+
+  // verify modal
+  verifyBtn: {
+    display: "flex",
+  },
+  btnCancelVerify: {
+    width: "100%",
+    fontSize: "14px",
+    backgroundColor: "transparent",
+    color: "#64748B",
+    border: "1.6px solid #94A3B8",
+  },
+  btnProcessVerify: {
+    width: "100%",
+    fontSize: "14px",
   },
 };
 
@@ -218,6 +330,7 @@ const mapStateToProps = (state) => {
   return {
     cart: state.userReducer.cart,
     userID: state.userReducer.id,
+    userPass: state.userReducer.password,
   };
 };
 
